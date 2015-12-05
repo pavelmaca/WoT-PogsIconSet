@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PogsIcons.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="itemDefLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Repositories\wot.icons\phobos.scripts\src\item_defs 0.9.12 #22</Value>
+    </Setting>
+    <Setting Name="gameVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">0.9.12</Value>
+    </Setting>
+    <Setting Name="outputLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Repositories\wot.icons2\output</Value>
+    </Setting>
+    <Setting Name="contourLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Repositories\wot.icons\phobos.scripts\contour</Value>
+    </Setting>
+    <Setting Name="imagesLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\images</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

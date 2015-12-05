@@ -1,0 +1,4 @@
+[submodule "libs/Phobos.WoT"]
+	path = libs/Phobos.WoT
+	url = ../Phobos.WoT
+	branch = master

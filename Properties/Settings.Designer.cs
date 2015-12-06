@@ -61,7 +61,7 @@ namespace PogsIcons.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".\\images")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\images")]
         public string imagesLocation {
             get {
                 return ((string)(this["imagesLocation"]));

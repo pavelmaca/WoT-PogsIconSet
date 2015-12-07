@@ -1,0 +1,34 @@
+﻿using Phobos.WoT;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using WotPogsIconSet.Fonts;
+
+namespace WotPogsIconSet.Layers
+{
+    public class Armor
+    {
+        public static Layer TurretArmorFSR = (Graphics g, TankStats tankStats) =>
+        {
+            if (!tankStats.IsTurretInternal)
+            {
+                string text = tankStats.TurretFront + "*" + tankStats.TurretSides + "*" + tankStats.TurretBack;
+
+                TextHelpers.helperDrawFontDinamic(g, text, Basic.BRUSH_WHITE, 79, 10, 67, FontAlign.Right);
+            }
+        };
+
+        public static Layer TurretArmorRSF = (Graphics g, TankStats tankStats) =>
+        {
+            if (!tankStats.IsTurretInternal)
+            {
+                string text = tankStats.TurretBack + "*" + tankStats.TurretSides + "*" + tankStats.TurretFront;
+
+                TextHelpers.helperDrawFontDinamic(g, text, Basic.BRUSH_WHITE, 79, 10, 67, FontAlign.Right);
+            }
+        };
+    }
+}

@@ -59,18 +59,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs" />
     <Compile Include="Fonts\PogsFontRenderer.cs" />
     <Compile Include="Fonts\PogsFonts.cs" />
-    <Compile Include="Icons\Clear.cs" />
-    <Compile Include="Icons\Icon.cs" />
-    <Compile Include="Icons\Layers\Tahti.cs" />
-    <Compile Include="Icons\Configs\Pogs.cs" />
-    <Compile Include="Icons\Layers\Max.cs" />
-    <Compile Include="Icons\Pogs.cs" />
-    <Compile Include="Icons\Layers\MaxFsrVrRld.cs" />
-    <Compile Include="Icons\Colored.cs" />
-    <Compile Include="IconGenerator.cs" />
-    <Compile Include="Icons\Stats.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="Icon.cs" />
+    <Compile Include="IconSet.cs" />
+    <Compile Include="Layers\Armor.cs" />
+    <Compile Include="Layers\Basic.cs" />
+    <Compile Include="Layers\Clear.cs" />
+    <Compile Include="Layers\Color.cs" />
+    <Compile Include="Layers\Layer.cs" />
+    <Compile Include="Layers\TextHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -79,7 +79,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="Utils\HsvColor.cs" />
     <Compile Include="Utils\ImageTools.cs" />
     <Compile Include="Utils\ShortNames.cs" />
   </ItemGroup>

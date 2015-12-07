@@ -8,9 +8,9 @@ namespace WotPogsIconSet
 {
     public class IconSet
     {
-        public IList<IconSet> Versions;
+        public IList<IconSet> Versions = new List<IconSet>();
 
-        public IList<Delegate> Layers;
+        public IList<Delegate> Layers = new List<Delegate>();
 
         public string Name { get; protected set; }
 
@@ -28,7 +28,7 @@ namespace WotPogsIconSet
 
         public string Generate(TankStats tankStats, string parentPath = null)
         {
-            string outputFile = Path.Combine(OutputPath + tankStats.FileName);
+            string outputFile = Path.Combine(OutputPath, tankStats.FileName);
 
             // create / load icon file
             using (Icon icon = parentPath == null ? new Icon() : new Icon(parentPath))

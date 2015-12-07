@@ -10,23 +10,23 @@ namespace WotPogsIconSet
     {
         protected List<TankStats> Stats;
 
-        protected IList<IconSet> IconSets;
+        protected IList<IconSet> IconSets = new List<IconSet>();
 
         public Generator()
         {
             // load tank stats using Phobos.WoT lib
             Console.WriteLine("Reading WoT stats...");
             String itemDefLocation = Properties.Settings.Default.itemDefLocation;
-            List<TankStats> stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
-            Console.WriteLine("Found " + stats.Count + " vehicles.");
+            Stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
+            Console.WriteLine("Found " + Stats.Count + " vehicles.");
         }
 
         public void AddIconSets(IList<IconSet> iconSets)
         {
-            this.IconSets = (List<IconSet>) this.IconSets.Concat(iconSets);
+            IconSets = IconSets.Concat(iconSets).ToList();
         }
 
-        protected string PrepareOutputFolder(IconSet iconSet, List<string> prefix = null )
+        protected void PrepareOutputFolder(IconSet iconSet, List<string> prefix = null )
         {
             // create directories for sub versions
             if (prefix == null)
@@ -34,7 +34,7 @@ namespace WotPogsIconSet
                 prefix = new List<string>();
             }
 
-            string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"\{0}\", String.Join("_", prefix) + iconSet.Name));
+            string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"{0}\", String.Join("_", prefix) + iconSet.Name));
             if (!Directory.Exists(outputPath))
             {
                 Console.WriteLine("Creating ouput directory: " + outputPath);
@@ -44,9 +44,10 @@ namespace WotPogsIconSet
             prefix.Add(iconSet.Name);
             foreach(IconSet version in iconSet.Versions)
             {
-                PrepareOutputFolder(iconSet, prefix);
+                PrepareOutputFolder(version, prefix);
             }
-            return outputPath;
+
+            iconSet.SetOutputPath(outputPath);
         }
 
         public void CreateIcons()

@@ -10,7 +10,7 @@ namespace WotPogsIconSet
     {
         protected List<TankStats> Stats;
 
-        protected IconSet[] IconSets;
+        protected IList<IconSet> IconSets;
 
         public Generator()
         {
@@ -19,6 +19,11 @@ namespace WotPogsIconSet
             String itemDefLocation = Properties.Settings.Default.itemDefLocation;
             List<TankStats> stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
             Console.WriteLine("Found " + stats.Count + " vehicles.");
+        }
+
+        public void AddIconSets(IList<IconSet> iconSets)
+        {
+            this.IconSets = (List<IconSet>) this.IconSets.Concat(iconSets);
         }
 
         protected string PrepareOutputFolder(IconSet iconSet, List<string> prefix = null )

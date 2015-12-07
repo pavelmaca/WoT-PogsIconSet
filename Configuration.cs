@@ -9,7 +9,7 @@ namespace WotPogsIconSet
 {
     public static class Configuration
     {
-        public static IList<IconSet> getIconSets()
+        public static IList<IconSet> getPogsIconSets()
         {
             IList<IconSet> iconSet = new List<IconSet>();
 

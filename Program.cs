@@ -13,7 +13,13 @@ namespace WotPogsIconSet
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
             // Run icon generator
+            // load stats
             Generator generator = new Generator();
+
+            // configure icon sets
+            generator.AddIconSets(Configuration.getPogsIconSets());
+            
+            // render icons
             generator.CreateIcons();
 
             generator.CreatePackagest();

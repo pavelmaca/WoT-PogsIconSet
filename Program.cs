@@ -6,8 +6,9 @@ using System.Text;
 using System.Reflection;
 using System.Threading;
 using System.Globalization;
-using WotPogsIconSet.Generators;
 using System.IO;
+using WotPogsIconSet.Icons;
+using WotPogsIconSet.Icons.Layers;
 
 namespace WotPogsIconSet
 {
@@ -19,37 +20,80 @@ namespace WotPogsIconSet
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
-
-
-            String itemDefLocation = PogsIcons.Properties.Settings.Default.itemDefLocation;
-
+            // load tank stats using Phobos.WoT lib
+            String itemDefLocation = Properties.Settings.Default.itemDefLocation;
             List<TankStats> stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
 
+            // generate Colored versions
             generateColored(stats);
+
+            // generate Clear versions
+
+            Console.ReadLine();
         }
 
         private static bool generateColored(List<TankStats> stats)
         {
             // TODO make basic version, then use it as source for other versions
 
-            IIConGenerator ig = new MaxFsrVrRld();
 
-            string name = "color";
-            string outputPath = PogsIcons.Properties.Settings.Default.outputLocation + String.Format(@"\{0}\gui\maps\icons\vehicle\contour\", name);
-            Console.WriteLine("Generating contour icons: " + name);
+            string outputPath = Properties.Settings.Default.outputLocation + @"\{0}\gui\maps\icons\vehicle\contour\";
+            Console.WriteLine("Generating coor icons: ");
 
-            if (!Directory.Exists(outputPath))
-            {
-                Directory.CreateDirectory(outputPath);
-            }
+            /*   if (!Directory.Exists(outputPath))
+               {
+                   Directory.CreateDirectory(outputPath);
+               }*/
+
+            Configs[][] configs = new Configs[][] {
+            // as default    new Configs[] { Configs.SIMPLE},
+                new Configs[] { Configs.MAX, Configs.FSR},
+                new Configs[] { Configs.MAX, Configs.FSR, Configs.RLD},
+                new Configs[] { Configs.MAX, Configs.FSR, Configs.VR},
+                new Configs[] { Configs.MAX, Configs.FSR, Configs.VR, Configs.RLD},
+                new Configs[] { Configs.MAX, Configs.RLD},
+                new Configs[] { Configs.DMG, Configs.ART },
+                new Configs[] { Configs.DMG, Configs.ART, Configs.RLD },
+                new Configs[] { Configs.DMG, Configs.ART, Configs.VR },
+                new Configs[] { Configs.DMG, Configs.ART, Configs.VR, Configs.RLD },
+            };
 
 
             foreach (TankStats tankStats in stats)
             {
-                ig.Generate(outputPath, tankStats);
+                using (Icons.Icon icon = new Colored(tankStats))
+                {
+                    string template = icon.Save(CreateFolder(String.Format(outputPath, "SIMPLE")));
+
+                    foreach(Configs[] config in configs)
+                    {
+                        string name = String.Join("_", config);
+           
+                        using (Icons.Icon subIcon = new Max(tankStats, template, config))
+                        {
+                            subIcon.Save(CreateFolder(String.Format(outputPath, name)));
+                        }
+                    }
+
+                    using (Icons.Icon subIcon = new Tahti(tankStats, template))
+                    {
+                        subIcon.Save(CreateFolder(String.Format(outputPath, "TAHTI")));
+                    }
+
+                }
             }
 
             return false;
+        }
+
+        private static string CreateFolder(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            return path;
         }
 
         private static bool generateClear(List<TankStats> stats)

@@ -6,6 +6,20 @@ namespace WotPogsIconSet.Utils
     public class ImageTools
     {
 
+        public static Image loadFromFile(string path)
+        {
+            try
+            {
+                return Image.FromFile(path);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\nImage not loaded: "+path);
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+
         public static void darkenImg(Image img, float factor)
         {
             if (factor == 1) return;

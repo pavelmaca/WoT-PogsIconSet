@@ -6,19 +6,20 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
+using WotPogsIconSet.Fonts;
+using WotPogsIconSet.Utils;
 
-namespace WotPogsIconSet.Generators
+namespace WotPogsIconSet.Icons
 {
-    public abstract class Colored : IconGenerator
+    public class Colored : Pogs
     {
-        protected static Brush colorWhite = Brushes.White;
-        protected static Brush colorGold = new SolidBrush(Color.FromArgb(235, 215, 5)); // Brushes.Gold;
-        protected static Brush colorOrange = new SolidBrush(Color.FromArgb(248, 186, 114));// Brushes.Orange;
-
+        protected static Image stripe;
         protected static Dictionary<TankType, Color[]> bgColors = new Dictionary<TankType, Color[]>(5);
 
         static Colored()
         {
+            stripe = ImageTools.loadFromFile(Properties.Settings.Default.imagesLocation + @"\stripe.png");
+
             bgColors[TankType.Heavy] = new Color[24] {
                 Color.FromArgb(123, 72, 36),  // 1
                 Color.FromArgb(121, 67, 33),
@@ -126,7 +127,7 @@ namespace WotPogsIconSet.Generators
                 Color.FromArgb(60, 12, 19),
                 Color.FromArgb(53, 10, 17)
             };
-                
+
             bgColors[TankType.TankDestroyer] = new Color[24] {
                 Color.FromArgb(49, 104, 175),  // 1
                 Color.FromArgb(40, 96, 170),
@@ -154,5 +155,24 @@ namespace WotPogsIconSet.Generators
                 Color.FromArgb(12, 29, 52)
             };
         }
+
+        public Colored(TankStats tankStats, string iconPath) : base(tankStats, iconPath) { }
+        public Colored(TankStats tankStats) : base(tankStats) { }
+
+        protected override void Draw()
+        {
+            // Grandient background
+            for (int y = 0; y < bgColors[tankStats.Type].Length; y++)
+            {
+                Pen p = new Pen(bgColors[tankStats.Type][y]);
+                g.DrawLine(p, 0, y, this.width, y);
+            }
+
+            // Name header
+            g.DrawImageUnscaled(stripe, 0, 0);
+
+            base.Draw();
+        }
+
     }
 }

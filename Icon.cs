@@ -21,21 +21,25 @@ namespace WotPogsIconSet
         {
             // create new image
             image = new Bitmap(WIDTH, HEIGHT, PixelFormat.Format32bppArgb);
-            image.SetResolution(72.0f, 72.0f); // fix DPI
-
-            g = Graphics.FromImage(image);
-
-            g.PageUnit = GraphicsUnit.Pixel;
-            g.SmoothingMode = SmoothingMode.None;
-            g.TextRenderingHint = TextRenderingHint.SingleBitPerPixel;
-            g.TextContrast = 0;
+            prepareGraphics();
         }
 
         public Icon(string parentFile)
         {
             // use existing image
-            this.image = new Bitmap(ImageTools.loadFromFile(parentFile));
-            this.g = Graphics.FromImage(image);
+            image = new Bitmap(ImageTools.loadFromFile(parentFile));
+            prepareGraphics();
+        }
+
+        protected void prepareGraphics()
+        {
+            image.SetResolution(72.0f, 72.0f); // fix DPI
+
+            g = Graphics.FromImage(image);
+            g.PageUnit = GraphicsUnit.Pixel;
+            g.SmoothingMode = SmoothingMode.None;
+            g.TextRenderingHint = TextRenderingHint.SingleBitPerPixel;
+            g.TextContrast = 0;
         }
 
         public void Save(string outputFile)
@@ -52,7 +56,7 @@ namespace WotPogsIconSet
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nError during appling layer: " + layer.Method);
+                Console.WriteLine("Error during appling layer: " + layer.Method);
                 Console.WriteLine(e.Message + "\n");
             }
         }

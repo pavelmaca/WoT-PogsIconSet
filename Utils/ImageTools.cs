@@ -14,8 +14,8 @@ namespace WotPogsIconSet.Utils
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nImage not loaded: "+path);
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Image not loaded: "+path);
+                Console.WriteLine(e.Message+"\n");
             }
             return null;
         }

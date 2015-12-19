@@ -35,8 +35,8 @@ namespace WotPogsIconSet.Layers
             if( PogsFontRenderer.getTextWidth(PogsFonts.font4, shortName) > 41)
             {
                 Console.WriteLine("Name is too long:" + shortName);
-                Console.WriteLine("Press ENTER to continue:");
-                Console.ReadLine();
+                //Console.WriteLine("Press ENTER to continue:");
+                //Console.ReadLine();
             }
             TextHelpers.helperDrawFont4px(g, shortName, BRUSH_WHITE, 19, 2);
         };
@@ -81,14 +81,19 @@ namespace WotPogsIconSet.Layers
         {
             if (tankStats.Type == TankType.Spg)
             {
-                PenetrationHelper(g, tankStats);
+                PenetrationHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
             }
             else
             {
-                DamageHelper(g, tankStats);
+                DamageHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
             }
+        };
 
-            //TextHelpers.helperDrawFont4px(g, String.Format("{0:0.#}", tankStats.Hp), BRUSH_ORANGE, 37, 17, FontAlign.Right);
+
+        public static Layer PenetrationAndDamage = (Graphics g, TankStats tankStats) =>
+        {
+            PenetrationHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
+            DamageHelper(g, tankStats, BRUSH_ORANGE, 79, 10, FontAlign.Right);
         };
 
         public static Layer ContourIcon = (Graphics g, TankStats tankStats) =>
@@ -143,17 +148,17 @@ namespace WotPogsIconSet.Layers
             premiumStar = ImageTools.loadFromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "star.png"));
         }
 
-        protected static void PenetrationHelper(Graphics g, TankStats tankStats)
+        protected static void PenetrationHelper(Graphics g, TankStats tankStats, Brush brush,  int x, int y, FontAlign align)
         {
 
             int text = tankStats.IsUsingHe ? tankStats.HeGun.HePenetration : tankStats.ApGun.ApPenetration; 
-            TextHelpers.helperDrawFont4px(g, text.ToString(), BRUSH_ORANGE, 79, 2, FontAlign.Right);
+            TextHelpers.helperDrawFont4px(g, text.ToString(), brush, x, y, align);
         }
 
-        protected static void DamageHelper(Graphics g, TankStats tankStats)
+        protected static void DamageHelper(Graphics g, TankStats tankStats, Brush brush, int x, int y,FontAlign align)
         {
             int text = tankStats.IsUsingHe ? tankStats.HeGun.HeDamage : tankStats.ApGun.ApDamage;
-            TextHelpers.helperDrawFont4px(g, text.ToString(), BRUSH_ORANGE, 79, 2, FontAlign.Right);
+            TextHelpers.helperDrawFont4px(g, text.ToString(), brush, x, y, align);
         }
 
     }

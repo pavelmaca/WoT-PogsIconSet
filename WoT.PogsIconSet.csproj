@@ -70,6 +70,7 @@
     <Compile Include="Layers\Clear.cs" />
     <Compile Include="Layers\Color.cs" />
     <Compile Include="Layers\Layer.cs" />
+    <Compile Include="Layers\Tahti.cs" />
     <Compile Include="Layers\TextHelpers.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

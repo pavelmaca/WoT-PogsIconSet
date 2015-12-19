@@ -18,7 +18,7 @@ namespace WotPogsIconSet
             Generator generator = new Generator();
 
             // configure icon sets
-            generator.AddIconSets(Configuration.getPogsMaxFSRVRRld());
+            generator.AddIconSets(Configuration.getSet());
 
             // render icons
             generator.CreateIcons();

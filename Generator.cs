@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 
 namespace WotPogsIconSet
 {
     public class Generator
     {
+        const string GAME_VERSION = "0.9.13";
+
         protected List<TankStats> Stats;
 
         protected IList<IconSet> IconSets = new List<IconSet>();
@@ -45,7 +48,7 @@ namespace WotPogsIconSet
                 Console.WriteLine("Creating ouput directory: " + outputPath);
                 Directory.CreateDirectory(outputPath);
             }
-            iconSet.SetOutputPath(outputPath);
+            iconSet.SetOutputPath(outputPath, prefix);
 
             // handle versions
             foreach (IconSet version in iconSet.getVersions())
@@ -70,12 +73,12 @@ namespace WotPogsIconSet
             {
                 //Console.WriteLine("vehicle: " + tankStats.FileName);
 
-                // Test
+                /*/ Test
                 if (tankStats.FileName != "czech-Cz04_T50_51.png")
                 {
                     continue;
                 }
-                ///
+                /*///
 
                 // traverse all main sets
                 foreach (IconSet iconSet in IconSets)
@@ -100,8 +103,44 @@ namespace WotPogsIconSet
 
         public void CreatePackagest()
         {
-            Console.WriteLine("Creating packagest (TODO)");
-            // TODO
+            Console.WriteLine("Creating packagest...");
+
+            // TODO create readme
+            foreach (IconSet iconSet in IconSets)
+            {
+                CreatePackage(iconSet);
+            }
+            Console.WriteLine("done");
+        }
+
+        public void CreatePackage(IconSet iconSet)
+        {
+            foreach(IconSet version in iconSet.getVersions())
+            {
+                CreatePackage(version);
+            }
+
+            using (FileStream zipToOpen = new FileStream(Path.Combine(Properties.Settings.Default.outputLocation, GAME_VERSION + "_"+iconSet.FullName+".zip"), FileMode.OpenOrCreate))
+            {
+                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
+                {
+                    /*ZipArchiveEntry readmeEntry = archive.CreateEntry("Readme.txt");
+                    using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
+                    {
+                        writer.WriteLine("Information about this package.");
+                        writer.WriteLine("========================");
+                    }*/
+
+                    // add each file
+                    foreach (TankStats tankStats in Stats)
+                    {
+                        string inputPath = Path.Combine(iconSet.OutputPath, tankStats.FileName);
+                        string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\{1}", GAME_VERSION, tankStats.FileName);
+                        archive.CreateEntryFromFile(inputPath, innerPath);
+                    }
+                   
+                }
+            }
         }
 
     }

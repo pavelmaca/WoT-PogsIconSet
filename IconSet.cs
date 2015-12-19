@@ -13,8 +13,9 @@ namespace WotPogsIconSet
         protected IList<Layer> Layers;
 
         public string Name { get; protected set; }
+        public string FullName { get; protected set; }
 
-        protected string OutputPath;
+        public string OutputPath { get; protected set; }
 
         public IconSet(string name)
         {
@@ -23,17 +24,18 @@ namespace WotPogsIconSet
             Layers = new List<Layer>();
         }
 
-        public void SetOutputPath(string path)
+        public void SetOutputPath(string path, string fullName)
         {
             OutputPath = path;
+            FullName = fullName;
         }
 
         public string Generate(TankStats tankStats, string parentPath = null)
         {
-            Console.WriteLine("Creating set:" + this.Name);
-            Console.WriteLine("parent:" + parentPath);
+            //Console.WriteLine("Creating set:" + this.Name);
+            //Console.WriteLine("parent:" + parentPath);
             string outputFile = Path.Combine(OutputPath, tankStats.FileName);
-            Console.WriteLine("output:" + outputFile);
+            //Console.WriteLine("output:" + outputFile);
 
             // create / load icon file
             using (Icon icon = parentPath == null ? new Icon() : new Icon(parentPath))

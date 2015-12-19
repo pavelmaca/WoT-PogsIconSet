@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 
 
@@ -17,12 +18,14 @@ namespace WotPogsIconSet
             Generator generator = new Generator();
 
             // configure icon sets
-            generator.AddIconSets(Configuration.getPogsIconSets());
-            
+            generator.AddIconSets(Configuration.getPogsMaxFSRVRRld());
+
             // render icons
             generator.CreateIcons();
 
             generator.CreatePackagest();
+
+            Console.ReadLine();
 
         }
     }

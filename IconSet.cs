@@ -8,9 +8,9 @@ namespace WotPogsIconSet
 {
     public class IconSet
     {
-        public IList<IconSet> Versions = new List<IconSet>();
+        protected IList<IconSet> Versions;
 
-        public IList<Delegate> Layers = new List<Delegate>();
+        protected IList<Layer> Layers;
 
         public string Name { get; protected set; }
 
@@ -19,6 +19,8 @@ namespace WotPogsIconSet
         public IconSet(string name)
         {
             Name = name;
+            Versions = new List<IconSet>();
+            Layers = new List<Layer>();
         }
 
         public void SetOutputPath(string path)
@@ -28,7 +30,10 @@ namespace WotPogsIconSet
 
         public string Generate(TankStats tankStats, string parentPath = null)
         {
+            Console.WriteLine("Creating set:" + this.Name);
+            Console.WriteLine("parent:" + parentPath);
             string outputFile = Path.Combine(OutputPath, tankStats.FileName);
+            Console.WriteLine("output:" + outputFile);
 
             // create / load icon file
             using (Icon icon = parentPath == null ? new Icon() : new Icon(parentPath))
@@ -40,10 +45,47 @@ namespace WotPogsIconSet
                 }
 
                 // save to file
+               // Console.WriteLine(outputFile);
                 icon.Save(outputFile);
             }
 
             return outputFile;
+        }
+
+        public void addLayer(Layer layer)
+        {
+            Layers.Add(layer);
+        }
+
+        public void addVersion(IconSet version)
+        {
+            Versions.Add(version.Clone());
+        }
+
+        public IList<Layer> getLayers()
+        {
+            return new List<Layer>(Layers);
+        }
+
+        public IList<IconSet> getVersions()
+        {
+            return new List<IconSet>(Versions);
+        }
+
+
+        protected IconSet Clone()
+        {
+            IconSet clone = new IconSet(Name);
+            clone.OutputPath = null;
+            clone.Layers = new List<Layer>(Layers);
+
+            // clone all versions
+            foreach(IconSet version in Versions)
+            {
+                clone.Versions.Add(version.Clone());
+            }
+
+            return clone;
         }
 
         

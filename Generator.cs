@@ -26,28 +26,33 @@ namespace WotPogsIconSet
             IconSets = IconSets.Concat(iconSets).ToList();
         }
 
-        protected void PrepareOutputFolder(IconSet iconSet, List<string> prefix = null )
+        protected void PrepareOutputFolder(IconSet iconSet, String prefix = null )
         {
             // create directories for sub versions
             if (prefix == null)
             {
-                prefix = new List<string>();
+                prefix = iconSet.Name;
             }
+            else
+            {
+                prefix += "_"+iconSet.Name;
+            }
+            
 
-            string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"{0}\", String.Join("_", prefix) + iconSet.Name));
+            string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"{0}\", prefix));
             if (!Directory.Exists(outputPath))
             {
                 Console.WriteLine("Creating ouput directory: " + outputPath);
                 Directory.CreateDirectory(outputPath);
             }
+            iconSet.SetOutputPath(outputPath);
 
-            prefix.Add(iconSet.Name);
-            foreach(IconSet version in iconSet.Versions)
+            // handle versions
+            foreach (IconSet version in iconSet.getVersions())
             {
+               // List<string> prefixClone = prefix.ToArray().ToList(); // TODO: better clone this object
                 PrepareOutputFolder(version, prefix);
             }
-
-            iconSet.SetOutputPath(outputPath);
         }
 
         public void CreateIcons()
@@ -63,7 +68,14 @@ namespace WotPogsIconSet
             Console.WriteLine("Generating icons...");
             foreach (TankStats tankStats in Stats)
             {
-                Console.WriteLine("vehicle: " + tankStats.FileName);
+                //Console.WriteLine("vehicle: " + tankStats.FileName);
+
+                // Test
+                if (tankStats.FileName != "czech-Cz04_T50_51.png")
+                {
+                    continue;
+                }
+                ///
 
                 // traverse all main sets
                 foreach (IconSet iconSet in IconSets)
@@ -75,10 +87,12 @@ namespace WotPogsIconSet
 
         protected void CreateIconSet(IconSet iconSet, TankStats tankStats, string parentPath = null)
         {
+            //Console.WriteLine("version: " + iconSet.Name);
+
             // generate base icon for set, and thne pass it to all other versions
             string iconPath = iconSet.Generate(tankStats, parentPath);
 
-            foreach (IconSet iconVersion in iconSet.Versions)
+            foreach (IconSet iconVersion in iconSet.getVersions())
             {
                 CreateIconSet(iconVersion, tankStats, iconPath);
             }

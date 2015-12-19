@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.Drawing.Text;
 using WotPogsIconSet.Layers;
 using WotPogsIconSet.Utils;
+using System.IO;
 
 namespace WotPogsIconSet
 {
@@ -27,6 +28,11 @@ namespace WotPogsIconSet
         public Icon(string parentFile)
         {
             // use existing image
+            if (!File.Exists(parentFile))
+            {
+                throw new Exception("Výchozí vrstva neexistuje.");
+            }
+
             image = new Bitmap(ImageTools.loadFromFile(parentFile));
             prepareGraphics();
         }

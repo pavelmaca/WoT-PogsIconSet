@@ -31,7 +31,7 @@ namespace WotPogsIconSet.Layers
         {
             foreach (TankType type in Enum.GetValues(typeof(TankType)))
             {
-                headerStripes[type] = ImageTools.loadFromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\stripes\{0}.png", type));
+                headerStripes[type] = Image.FromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\stripes\{0}.png", type));
             }
         }
 

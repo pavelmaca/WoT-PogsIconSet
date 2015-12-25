@@ -33,7 +33,7 @@ namespace WotPogsIconSet
                 throw new Exception("Výchozí vrstva neexistuje.");
             }
 
-            image = new Bitmap(ImageTools.loadFromFile(parentFile));
+            image = new Bitmap(Image.FromFile(parentFile));
             prepareGraphics();
         }
 
@@ -62,7 +62,7 @@ namespace WotPogsIconSet
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error during appling layer: " + layer.Method);
+                Console.WriteLine("Error during appling layer: " + layer.Target);
                 Console.WriteLine(e.Message + "\n");
             }
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WotPogsIconSet.Layers;
 
 namespace WotPogsIconSet
@@ -101,7 +97,7 @@ namespace WotPogsIconSet
             colored.addVersion(max);
             colored.addVersion(artDmg);
             //colored.addVersion(tahti);
-            
+
             // CLEAR
             IconSet clear = genClear();
             clear.addVersion(max);
@@ -114,27 +110,27 @@ namespace WotPogsIconSet
 
             return iconSet;
         }
-        
-                public static IList<IconSet> getPogsMaxFSRVRRld()
-                {
-                    IList<IconSet> iconSet = new List<IconSet>();
 
-                    IconSet colored = new IconSet("COLOR");
-                    colored.addLayer(Colored.GrandientBackground);
-                    colored.addLayer(Colored.TankNameHeader);
-                    colored.addLayer(Basic.Shield);
-                    colored.addLayer(Basic.Premium);
-                    colored.addLayer(Basic.Tier);
-                    colored.addLayer(Basic.TankName);
-                    colored.addLayer(Basic.ContourIcon);
-                    colored.addLayer(Basic.PenetrationOrDamage);
-                    colored.addLayer(Basic.ViewRange);
-                    colored.addLayer(Armor.TurretArmorFSR);
-                    colored.addLayer(Armor.HullArmorFSR);
-                    colored.addLayer(Basic.ReloadTime);
-                    iconSet.Add(colored);
-                    return iconSet;
-                }
+        public static IList<IconSet> getPogsMaxFSRVRRld()
+        {
+            IList<IconSet> iconSet = new List<IconSet>();
+
+            IconSet colored = new IconSet("COLOR");
+            colored.addLayer(Colored.GrandientBackground);
+            colored.addLayer(Colored.TankNameHeader);
+            colored.addLayer(Basic.Shield);
+            colored.addLayer(Basic.Premium);
+            colored.addLayer(Basic.Tier);
+            colored.addLayer(Basic.TankName);
+            colored.addLayer(Basic.ContourIcon);
+            colored.addLayer(Basic.PenetrationOrDamage);
+            colored.addLayer(Basic.ViewRange);
+            colored.addLayer(Armor.TurretArmorFSR);
+            colored.addLayer(Armor.HullArmorFSR);
+            colored.addLayer(Basic.ReloadTime);
+            iconSet.Add(colored);
+            return iconSet;
+        }
 
 
         static IconSet getArtSet()
@@ -156,7 +152,7 @@ namespace WotPogsIconSet
 
         static IconSet getTahti()
         {
-           // IList<IconSet> iconSet = new List<IconSet>();
+            // IList<IconSet> iconSet = new List<IconSet>();
 
             /*
 -addStat "reload time"      35 10 235 215 5   4
@@ -180,9 +176,9 @@ addStat "bonus view range" 65 2  242 234 1
 
             return tahti;
 
-           // iconSet.Add(tahti);
+            // iconSet.Add(tahti);
 
-           // return iconSet;
+            // return iconSet;
         }
 
     }

@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WotPogsIconSet.Fonts;
 using WotPogsIconSet.Utils;
 
@@ -13,16 +10,6 @@ namespace WotPogsIconSet.Layers
 {
     public class Basic
     {
-        /* public static Layer TankName = TankNameHandler;
-         public static Layer GrandientBackground = TankNameHandler;
-
-         public static Layer Premium = TankNameHandler;
-         public static Layer Contour = TankNameHandler;
-         public static Layer Tier = TankNameHandler;
-
-         public static Layer TuretArmorFSR = TankNameHandler;
-         public static Layer TuretArmorRSF = TankNameHandler;*/
-
         // Colors
         public readonly static Brush BRUSH_WHITE = Brushes.White;
         public readonly static Brush BRUSH_GOLD = new SolidBrush(Color.FromArgb(235, 215, 5));
@@ -31,7 +18,7 @@ namespace WotPogsIconSet.Layers
         public static Layer TankName = (Graphics g, TankStats tankStats) =>
         {
             String vehicleName = TankNameHelper.findShortName(tankStats, 42);
-        
+
             TextHelpers.helperDrawFontDinamic(g, vehicleName, BRUSH_WHITE, 18, 2, 42);
         };
 
@@ -76,7 +63,7 @@ namespace WotPogsIconSet.Layers
             if (tankStats.Type == TankType.Spg)
             {
                 DamageHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
-                
+
             }
             else
             {
@@ -97,7 +84,7 @@ namespace WotPogsIconSet.Layers
             {
                 if (original == null)
                 {
-                    Console.WriteLine("No contour image for tank:" + tankStats.Name+"\n");
+                    Console.WriteLine("No contour image for tank:" + tankStats.Name + "\n");
                     return;
                 }
 
@@ -143,14 +130,14 @@ namespace WotPogsIconSet.Layers
             premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "star.png"));
         }
 
-        protected static void PenetrationHelper(Graphics g, TankStats tankStats, Brush brush,  int x, int y, FontAlign align)
+        protected static void PenetrationHelper(Graphics g, TankStats tankStats, Brush brush, int x, int y, FontAlign align)
         {
 
-            int text = tankStats.IsUsingHe ? tankStats.HeGun.HePenetration : tankStats.ApGun.ApPenetration; 
+            int text = tankStats.IsUsingHe ? tankStats.HeGun.HePenetration : tankStats.ApGun.ApPenetration;
             TextHelpers.helperDrawFont4px(g, text.ToString(), brush, x, y, align);
         }
 
-        protected static void DamageHelper(Graphics g, TankStats tankStats, Brush brush, int x, int y,FontAlign align)
+        protected static void DamageHelper(Graphics g, TankStats tankStats, Brush brush, int x, int y, FontAlign align)
         {
             int text = tankStats.IsUsingHe ? tankStats.HeGun.HeDamage : tankStats.ApGun.ApDamage;
             TextHelpers.helperDrawFont4px(g, text.ToString(), brush, x, y, align);

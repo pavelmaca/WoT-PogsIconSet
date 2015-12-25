@@ -20,9 +20,10 @@ namespace WotPogsIconSet
             // configure icon sets
             generator.AddIconSets(Configuration.getSet());
 
-            // render icons
+            // render icons to output directory
             generator.CreateIcons();
 
+            // create zip archives
             generator.CreatePackagest();
 
             Console.ReadLine();

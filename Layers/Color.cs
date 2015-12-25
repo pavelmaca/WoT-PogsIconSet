@@ -1,12 +1,7 @@
 ﻿using Phobos.WoT;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WotPogsIconSet.Utils;
 
 namespace WotPogsIconSet.Layers
 {
@@ -36,7 +31,7 @@ namespace WotPogsIconSet.Layers
 
         static Colored()
         {
-            
+
             stripe = Image.FromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "stripe.png"));
 
             bgColors[TankType.Heavy] = new Color[24] {

@@ -4,9 +4,8 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
-using WotPogsIconSet.Layers;
-using WotPogsIconSet.Utils;
 using System.IO;
+using WotPogsIconSet.Layers;
 
 namespace WotPogsIconSet
 {

@@ -1,10 +1,6 @@
 ﻿using Phobos.WoT;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using WotPogsIconSet.Fonts;
 
 namespace WotPogsIconSet.Utils
@@ -22,14 +18,14 @@ namespace WotPogsIconSet.Utils
             if (startWithId(name))
             {
                 //Console.WriteLine("Invalid name: " + tank.Name);
-                return translatedName(tank, maxWidth, name+"_invalid");
+                return translatedName(tank, maxWidth, name + "_invalid");
             }
 
             // if regular name is too long, use transalted name
-            if(isTextToLong(name, maxWidth))
+            if (isTextToLong(name, maxWidth))
             {
                 //Console.WriteLine("Name is to long: " + tank.Name);
-                return translatedName(tank, maxWidth, name+"_to_long");
+                return translatedName(tank, maxWidth, name + "_to_long");
             }
 
             return name;
@@ -38,21 +34,21 @@ namespace WotPogsIconSet.Utils
         protected static string translatedName(TankStats tank, int maxWidth, string fallBackName)
         {
             // 2 transalted name
- 
+
             string name = Translator.findName(tank);
 
             // if no translated name found, use custom name
             if (name == null)
             {
                 //Console.WriteLine("No translation for: " + tank.Id);
-                return customName(tank, maxWidth, fallBackName+"_no_translation");
+                return customName(tank, maxWidth, fallBackName + "_no_translation");
             }
 
             // if translated name is too long, use custom name
             if (isTextToLong(name, maxWidth))
             {
                 //Console.WriteLine("Translated name is to long: " + tank.Id);
-                return customName(tank, maxWidth, name+"_transaltion_to_long");
+                return customName(tank, maxWidth, name + "_transaltion_to_long");
             }
 
             return name;

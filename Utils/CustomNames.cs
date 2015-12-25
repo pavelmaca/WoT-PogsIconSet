@@ -3,8 +3,6 @@ using Phobos.WoT;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
-using WotPogsIconSet.Fonts;
 
 namespace WotPogsIconSet.Utils
 {
@@ -25,37 +23,6 @@ namespace WotPogsIconSet.Utils
             }
         }
 
-
-      /*  public static string findShortName(TankStats tank, int maxLenght)
-        {
-
-
-            string translatedName = Translator.findShortName(tank);
-
-            if (translatedName == null)
-            {
-                Console.WriteLine("No translation for: " + tank.Id);
-                translatedName = useCustomName(tank, tank.Id+"_not_found");
-            }
-            else if (translatedName.Contains("_"))
-            {
-                Console.WriteLine("Invalid translation for: " + tank.Id + " \""+translatedName+"\"");
-                translatedName = useCustomName(tank, translatedName+"_invalid");
-            }
-            else if (PogsFontRenderer.getTextWidth(PogsFonts.font4, translatedName) > maxLenght)
-            {
-                Console.WriteLine("Translated name is too long: " + translatedName);
-                translatedName = useCustomName(tank, translatedName);
-
-                if(PogsFontRenderer.getTextWidth(PogsFonts.font4, translatedName) > maxLenght)
-                {
-                    Console.WriteLine("Custom name is too long: " + translatedName);
-                }
-            }
-
-            return translatedName == null ? "" : translatedName;
-        }*/
-
         public static string findName(TankStats tank, string fallBackName)
         {
             string key = tank.Nation + ":" + tank.Id;
@@ -70,9 +37,6 @@ namespace WotPogsIconSet.Utils
 
             return null;
         }
-
-       
-
 
         public static void saveNewShortNames(string key, string name)
         {

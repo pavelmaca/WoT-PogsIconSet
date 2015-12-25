@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 
 namespace WotPogsIconSet.Fonts
 {
@@ -9,7 +7,7 @@ namespace WotPogsIconSet.Fonts
 
     public abstract class PogsFontRenderer
     {
-        
+
         public static void drawText(Graphics g, string text, PogsFont bigFont, Brush color, int xPos, int yPos, FontAlign align, int maxWidth = 0, PogsFont smallFont = null)
         {
             char[] chars = convertToChars(text);

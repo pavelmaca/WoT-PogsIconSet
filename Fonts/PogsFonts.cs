@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace WotPogsIconSet.Fonts
 {
-    public class PogsFont: Dictionary<char, int[][]> { }
+    public class PogsFont : Dictionary<char, int[][]> { }
 
     public abstract class PogsFonts
     {

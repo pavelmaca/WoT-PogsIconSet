@@ -29,7 +29,7 @@ namespace WotPogsIconSet
             IconSets = IconSets.Concat(iconSets).ToList();
         }
 
-        protected void PrepareOutputFolder(IconSet iconSet, String prefix = null )
+        protected void PrepareOutputFolder(IconSet iconSet, String prefix = null)
         {
             // create directories for sub versions
             if (prefix == null)
@@ -38,9 +38,9 @@ namespace WotPogsIconSet
             }
             else
             {
-                prefix += "_"+iconSet.Name;
+                prefix += "_" + iconSet.Name;
             }
-            
+
 
             string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"{0}\", prefix));
             if (!Directory.Exists(outputPath))
@@ -53,7 +53,7 @@ namespace WotPogsIconSet
             // handle versions
             foreach (IconSet version in iconSet.getVersions())
             {
-               // List<string> prefixClone = prefix.ToArray().ToList(); // TODO: better clone this object
+                // List<string> prefixClone = prefix.ToArray().ToList(); // TODO: better clone this object
                 PrepareOutputFolder(version, prefix);
             }
         }
@@ -80,7 +80,7 @@ namespace WotPogsIconSet
                 }
                 *///
 
-               // if (tankStats.Nation != "germany") continue;
+                // if (tankStats.Nation != "germany") continue;
 
                 // traverse all main sets
                 foreach (IconSet iconSet in IconSets)
@@ -92,8 +92,6 @@ namespace WotPogsIconSet
 
         protected void CreateIconSet(IconSet iconSet, TankStats tankStats, string parentPath = null)
         {
-            //Console.WriteLine("version: " + iconSet.Name);
-
             // generate base icon for set, and thne pass it to all other versions
             string iconPath = iconSet.Generate(tankStats, parentPath);
 
@@ -117,12 +115,12 @@ namespace WotPogsIconSet
 
         public void CreatePackage(IconSet iconSet)
         {
-            foreach(IconSet version in iconSet.getVersions())
+            foreach (IconSet version in iconSet.getVersions())
             {
                 CreatePackage(version);
             }
 
-            using (FileStream zipToOpen = new FileStream(Path.Combine(Properties.Settings.Default.outputLocation, GAME_VERSION + "_"+iconSet.FullName+".zip"), FileMode.OpenOrCreate))
+            using (FileStream zipToOpen = new FileStream(Path.Combine(Properties.Settings.Default.outputLocation, GAME_VERSION + "_" + iconSet.FullName + ".zip"), FileMode.OpenOrCreate))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
                 {
@@ -140,7 +138,7 @@ namespace WotPogsIconSet
                         string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\{1}", GAME_VERSION, tankStats.FileName);
                         archive.CreateEntryFromFile(inputPath, innerPath);
                     }
-                   
+
                 }
             }
         }

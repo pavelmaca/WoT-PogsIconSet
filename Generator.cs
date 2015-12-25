@@ -74,11 +74,13 @@ namespace WotPogsIconSet
                 //Console.WriteLine("vehicle: " + tankStats.FileName);
 
                 /*/ Test
-                if (tankStats.FileName != "czech-Cz04_T50_51.png")
+                if (tankStats.FileName != "czech-Cz01_Skoda_T40.png")
                 {
                     continue;
                 }
-                /*///
+                *///
+
+               // if (tankStats.Nation != "germany") continue;
 
                 // traverse all main sets
                 foreach (IconSet iconSet in IconSets)

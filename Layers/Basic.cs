@@ -30,20 +30,14 @@ namespace WotPogsIconSet.Layers
 
         public static Layer TankName = (Graphics g, TankStats tankStats) =>
         {
-            String shortName = ShortNames.findShortName(tankStats);
-
-            if( PogsFontRenderer.getTextWidth(PogsFonts.font4, shortName) > 41)
-            {
-                Console.WriteLine("Name is too long:" + shortName);
-                //Console.WriteLine("Press ENTER to continue:");
-                //Console.ReadLine();
-            }
-            TextHelpers.helperDrawFont4px(g, shortName, BRUSH_WHITE, 19, 2);
+            String vehicleName = TankNameHelper.findShortName(tankStats, 42);
+        
+            TextHelpers.helperDrawFontDinamic(g, vehicleName, BRUSH_WHITE, 18, 2, 42);
         };
 
         public static Layer Shield = (Graphics g, TankStats tankStats) =>
         {
-            using (Image shield = ImageTools.loadFromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\sheilds\{0}.png", tankStats.Nation)))
+            using (Image shield = Image.FromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\sheilds\{0}.png", tankStats.Nation)))
                 g.DrawImageUnscaled(shield, 1, 2);
         };
 
@@ -81,11 +75,12 @@ namespace WotPogsIconSet.Layers
         {
             if (tankStats.Type == TankType.Spg)
             {
-                PenetrationHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
+                DamageHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
+                
             }
             else
             {
-                DamageHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
+                PenetrationHelper(g, tankStats, BRUSH_ORANGE, 79, 2, FontAlign.Right);
             }
         };
 
@@ -98,7 +93,7 @@ namespace WotPogsIconSet.Layers
 
         public static Layer ContourIcon = (Graphics g, TankStats tankStats) =>
         {
-            using (Image original = ImageTools.loadFromFile(Path.Combine(Properties.Settings.Default.contourLocation, tankStats.FileName)))
+            using (Image original = Image.FromFile(Path.Combine(Properties.Settings.Default.contourLocation, tankStats.FileName)))
             {
                 if (original == null)
                 {
@@ -145,7 +140,7 @@ namespace WotPogsIconSet.Layers
         static Basic()
         {
 
-            premiumStar = ImageTools.loadFromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "star.png"));
+            premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "star.png"));
         }
 
         protected static void PenetrationHelper(Graphics g, TankStats tankStats, Brush brush,  int x, int y, FontAlign align)

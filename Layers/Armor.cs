@@ -11,7 +11,7 @@ namespace WotPogsIconSet.Layers
 {
     public class Armor
     {
-        const int MAX_WIDTH = 40;
+        const int MAX_WIDTH = 41;
 
         public static Layer TurretArmorFSR = (Graphics g, TankStats tankStats) =>
         {

@@ -10,18 +10,20 @@ namespace WotPogsIconSet.Fonts
     public abstract class PogsFontRenderer
     {
         
-        public static void drawText(Graphics g, string text, PogsFont font, Brush color, int xPos, int yPos, FontAlign align, int maxWidth = 0, PogsFont smallFont = null)
+        public static void drawText(Graphics g, string text, PogsFont bigFont, Brush color, int xPos, int yPos, FontAlign align, int maxWidth = 0, PogsFont smallFont = null)
         {
             char[] chars = convertToChars(text);
 
             int currentX = xPos;
-            int width = getTextWidth(font, text);
+            int width = getTextWidth(bigFont, text);
+
+            bool combine = false;
 
             // use smaller font if width is to big
-            if(maxWidth > 0 && width > maxWidth && smallFont != null)
+            if (maxWidth > 0 && width > maxWidth && smallFont != null)
             {
-                font = smallFont;
-                width = getTextWidth(font, text);
+                combine = true;
+                width = getTextWidth(smallFont, bigFont, text);
             }
 
 
@@ -36,24 +38,34 @@ namespace WotPogsIconSet.Fonts
 
             for (int i = 0; i < chars.Length; i++)
             {
+                PogsFont font = (combine && smallFont.ContainsKey(chars[i])) ? smallFont : bigFont;
+
                 drawChar(font, g, currentX, yPos, chars[i], color);
                 currentX += getCharPixelLenght(font, chars[i]) + 1;
             }
         }
+
 
         protected static char[] convertToChars(string text)
         {
             return text.ToLower().ToCharArray();
         }
 
-        public static int getTextWidth(PogsFont font, string text)
+        public static int getTextWidth(PogsFont smallFont, PogsFont bigFont, string text)
         {
             char[] chars = convertToChars(text);
 
             int width = 0;
             foreach (char character in chars)
             {
-                width += getCharPixelLenght(font, character) + 1;
+                int charWidth = getCharPixelLenght(smallFont, character);
+                if (charWidth == 0)
+                {
+                    // if small font dosnt contain char, use big font
+                    charWidth = getCharPixelLenght(bigFont, character);
+                }
+
+                width += charWidth + 1;
             }
 
             if (width > 0)
@@ -62,6 +74,11 @@ namespace WotPogsIconSet.Fonts
             }
 
             return width;
+        }
+
+        public static int getTextWidth(PogsFont font, string text)
+        {
+            return getTextWidth(font, font, text);
         }
 
         protected static int getCharPixelLenght(PogsFont font, char character)

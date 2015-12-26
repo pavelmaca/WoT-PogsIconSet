@@ -137,8 +137,8 @@ namespace WotPogsIconSet
         {
             IconSet dmgArt = new IconSet("DMG_ART");
 
-            // ARMOR TS
-            dmgArt.addLayer(Armor.HullArmorTS);
+            // Turret FRONT
+            dmgArt.addLayer(Armor.TurretArmorFront);
 
             // PEN AND DAM
             dmgArt.addLayer(Basic.PenetrationAndDamage);

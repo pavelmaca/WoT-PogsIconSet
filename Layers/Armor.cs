@@ -42,10 +42,13 @@ namespace WotPogsIconSet.Layers
         };
 
         // turret[·1·]" 59 10 255 255 255 4
-        public static Layer HullArmorTS = (Graphics g, TankStats tankStats) =>
+        public static Layer TurretArmorFront = (Graphics g, TankStats tankStats) =>
         {
-            string text = tankStats.HullSides.ToString();
-            TextHelpers.helperDrawFont4px(g, text, Basic.BRUSH_WHITE, 59, 10, FontAlign.Right);
+            if (!tankStats.IsTurretInternal)
+            {
+                string text = tankStats.TurretFront.ToString();
+                TextHelpers.helperDrawFont4px(g, text, Basic.BRUSH_WHITE, 59, 10, FontAlign.Right);
+            }
         };
 
 

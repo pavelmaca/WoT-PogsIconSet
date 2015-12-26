@@ -9,8 +9,6 @@ namespace WotPogsIconSet
 {
     public class Generator
     {
-        const string GAME_VERSION = "0.9.13";
-
         protected List<TankStats> Stats;
 
         protected IList<IconSet> IconSets = new List<IconSet>();
@@ -120,7 +118,11 @@ namespace WotPogsIconSet
                 CreatePackage(version);
             }
 
-            using (FileStream zipToOpen = new FileStream(Path.Combine(Properties.Settings.Default.outputLocation, GAME_VERSION + "_" + iconSet.FullName + ".zip"), FileMode.OpenOrCreate))
+
+            string zipFileName = Properties.Settings.Default.gameVersion + "_" + iconSet.FullName + ".zip";
+            string zipPath = Path.Combine(Properties.Settings.Default.outputLocation, zipFileName);
+
+            using (FileStream zipToOpen = new FileStream(zipPath, FileMode.OpenOrCreate))
             {
                 using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
                 {
@@ -135,7 +137,7 @@ namespace WotPogsIconSet
                     foreach (TankStats tankStats in Stats)
                     {
                         string inputPath = Path.Combine(iconSet.OutputPath, tankStats.FileName);
-                        string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\{1}", GAME_VERSION, tankStats.FileName);
+                        string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\{1}", Properties.Settings.Default.gameVersion, tankStats.FileName);
                         archive.CreateEntryFromFile(inputPath, innerPath);
                     }
 

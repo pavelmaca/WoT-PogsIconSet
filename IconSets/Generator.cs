@@ -1,4 +1,5 @@
-﻿using Phobos.WoT;
+﻿using Ionic.Zip;
+using Phobos.WoT;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -56,7 +57,7 @@ namespace WotPogsIconSet
             }
         }
 
-        public void CreateIcons()
+        public void PrepareOutputFolders()
         {
             // prepare output folders
             Console.WriteLine("Preparings output derectories...");
@@ -64,6 +65,11 @@ namespace WotPogsIconSet
             {
                 PrepareOutputFolder(iconSet);
             }
+        }
+
+        public void CreateIcons()
+        {
+            PrepareOutputFolders();
 
             // generates icons
             Console.WriteLine("Generating icons...");
@@ -118,30 +124,17 @@ namespace WotPogsIconSet
                 CreatePackage(version);
             }
 
-
             string zipFileName = Properties.Settings.Default.gameVersion + "_" + iconSet.FullName + ".zip";
             string zipPath = Path.Combine(Properties.Settings.Default.outputLocation, zipFileName);
 
             using (FileStream zipToOpen = new FileStream(zipPath, FileMode.OpenOrCreate))
+
+            using (ZipFile archive = new ZipFile())
             {
-                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
-                {
-                    /*ZipArchiveEntry readmeEntry = archive.CreateEntry("Readme.txt");
-                    using (StreamWriter writer = new StreamWriter(readmeEntry.Open()))
-                    {
-                        writer.WriteLine("Information about this package.");
-                        writer.WriteLine("========================");
-                    }*/
+                string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\", Properties.Settings.Default.gameVersion);
 
-                    // add each file
-                    foreach (TankStats tankStats in Stats)
-                    {
-                        string inputPath = Path.Combine(iconSet.OutputPath, tankStats.FileName);
-                        string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\{1}", Properties.Settings.Default.gameVersion, tankStats.FileName);
-                        archive.CreateEntryFromFile(inputPath, innerPath);
-                    }
-
-                }
+                archive.AddDirectory(iconSet.OutputPath, innerPath);
+                archive.Save(zipPath);                   
             }
         }
 

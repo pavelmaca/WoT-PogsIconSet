@@ -1,11 +1,7 @@
 ﻿using Phobos.WoT;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WotPogsIconSet.Fonts;
 using WotPogsIconSet.Utils;
 
@@ -17,8 +13,11 @@ namespace WotPogsIconSet.Layers
 
         public static Layer Shield = (Graphics g, TankStats tankStats) =>
         {
-            using (Image shield = Image.FromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\sheilds\{0}.png", tankStats.Nation)))
+            string shieldPath = Path.Combine(Properties.Settings.Default.srcLocation, @"images\sheilds", String.Format(@"{0}.png", tankStats.Nation));
+            using (Image shield = Image.FromFile(shieldPath))
+            {
                 g.DrawImageUnscaled(shield, 1, 2);
+            }
         };
 
         public static Layer Premium = (Graphics g, TankStats tankStats) =>
@@ -36,7 +35,7 @@ namespace WotPogsIconSet.Layers
 
         public static Layer ContourIcon = (Graphics g, TankStats tankStats) =>
         {
-            using (Image original = Image.FromFile(Path.Combine(Properties.Settings.Default.contourLocation, tankStats.FileName)))
+            using (Image original = Image.FromFile(Path.Combine(Properties.Settings.Default.srcLocation, "contour", tankStats.FileName)))
             {
                 if (original == null)
                 {
@@ -82,8 +81,6 @@ namespace WotPogsIconSet.Layers
         };
 
 
-
-
         // Setup
 
         protected static Image premiumStar;
@@ -91,7 +88,7 @@ namespace WotPogsIconSet.Layers
         static Vehicle()
         {
 
-            premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.imagesLocation, "star.png"));
+            premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.srcLocation, @"images\star.png"));
         }
     }
 }

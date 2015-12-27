@@ -233,3 +233,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+src/contour/*.png
+src/texts/*.mo

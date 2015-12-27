@@ -52,19 +52,10 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\sources\\contour")]
-        public string contourLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\src")]
+        public string srcLocation {
             get {
-                return ((string)(this["contourLocation"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\images")]
-        public string imagesLocation {
-            get {
-                return ((string)(this["imagesLocation"]));
+                return ((string)(this["srcLocation"]));
             }
         }
     }

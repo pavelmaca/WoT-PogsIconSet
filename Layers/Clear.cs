@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 
 namespace WotPogsIconSet.Layers
 {
@@ -27,7 +28,8 @@ namespace WotPogsIconSet.Layers
         {
             foreach (TankType type in Enum.GetValues(typeof(TankType)))
             {
-                headerStripes[type] = Image.FromFile(Properties.Settings.Default.imagesLocation + String.Format(@"\stripes\{0}.png", type));
+                string stripePath = Path.Combine(Properties.Settings.Default.srcLocation, @"images\stripes", String.Format(@"{0}.png", type));
+                headerStripes[type] = Image.FromFile(stripePath);
             }
         }
 

@@ -98,6 +98,8 @@ namespace WotPogsIconSet
                     CreateIconSet(iconSet, tankStats);
                 }
             }
+
+            Console.WriteLine("done");
         }
 
         protected void CreateIconSet(IconSet iconSet, TankStats tankStats, string parentPath = null)

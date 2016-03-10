@@ -5,50 +5,6 @@ namespace WotPogsIconSet
 {
     public static class Configuration
     {
-
-        static IconSet genColored()
-        {
-            IconSet colored = new IconSet("COLOR");
-            colored.addLayer(Colored.GrandientBackground);
-            colored.addLayer(Colored.TankNameHeader);
-            colored.addLayer(Basic.Shield);
-            colored.addLayer(Basic.Premium);
-            colored.addLayer(Basic.Tier);
-            colored.addLayer(Basic.TankName);
-            colored.addLayer(Basic.ContourIcon);
-            return colored;
-        }
-
-        static IconSet genClear()
-        {
-            IconSet clear = new IconSet("CLEAR");
-            clear.addLayer(Clear.TransaprentBackground);
-            clear.addLayer(Clear.ColoredTankNameHeader);
-            clear.addLayer(Basic.Shield);
-            clear.addLayer(Basic.Premium);
-            clear.addLayer(Basic.Tier);
-            clear.addLayer(Basic.TankName);
-            clear.addLayer(Basic.ContourIcon);
-            return clear;
-        }
-
-        static IconSet genFSR()
-        {
-            IconSet fsr = new IconSet("FSR");
-            fsr.addLayer(Armor.TurretArmorFSR);
-            fsr.addLayer(Armor.HullArmorFSR);
-            return fsr;
-        }
-
-        static IconSet genRSF()
-        {
-            IconSet rsf = new IconSet("RSF");
-            rsf.addLayer(Armor.TurretArmorRSF);
-            rsf.addLayer(Armor.HullArmorRSF);
-            return rsf;
-        }
-
-
         public static IList<IconSet> getSet()
         {
             IList<IconSet> iconSet = new List<IconSet>();
@@ -68,12 +24,16 @@ namespace WotPogsIconSet
             vr.addVersion(rld);
 
             // RSF
-            IconSet rsf = genRSF();
+            IconSet rsf = new IconSet("RSF");
+            rsf.addLayer(Armor.TurretArmorRSF);
+            rsf.addLayer(Armor.HullArmorRSF);
             rsf.addVersion(hp);
             rsf.addVersion(vr);
 
             // FSR
-            IconSet fsr = genFSR();
+            IconSet fsr = new IconSet("FSR");
+            fsr.addLayer(Armor.TurretArmorFSR);
+            fsr.addLayer(Armor.HullArmorFSR);
             fsr.addVersion(hp);
             fsr.addVersion(vr);
 
@@ -93,13 +53,27 @@ namespace WotPogsIconSet
             //IconSet tahti = getTahti();
 
             // COLORED
-            IconSet colored = genColored();
+            IconSet colored = new IconSet("COLOR");
+            colored.addLayer(Colored.GrandientBackground);
+            colored.addLayer(Colored.TankNameHeader);
+            colored.addLayer(Vehicle.Shield);
+            colored.addLayer(Vehicle.Premium);
+            colored.addLayer(Vehicle.Tier);
+            colored.addLayer(Vehicle.TankName);
+            colored.addLayer(Vehicle.ContourIcon);
             colored.addVersion(max);
             colored.addVersion(artDmg);
             //colored.addVersion(tahti);
 
             // CLEAR
-            IconSet clear = genClear();
+            IconSet clear = new IconSet("CLEAR");
+            clear.addLayer(Clear.TransaprentBackground);
+            clear.addLayer(Clear.ColoredTankNameHeader);
+            clear.addLayer(Vehicle.Shield);
+            clear.addLayer(Vehicle.Premium);
+            clear.addLayer(Vehicle.Tier);
+            clear.addLayer(Vehicle.TankName);
+            clear.addLayer(Vehicle.ContourIcon);
             clear.addVersion(max);
             clear.addVersion(artDmg);
             //clear.addVersion(tahti);
@@ -118,11 +92,11 @@ namespace WotPogsIconSet
             IconSet colored = new IconSet("COLOR");
             colored.addLayer(Colored.GrandientBackground);
             colored.addLayer(Colored.TankNameHeader);
-            colored.addLayer(Basic.Shield);
-            colored.addLayer(Basic.Premium);
-            colored.addLayer(Basic.Tier);
-            colored.addLayer(Basic.TankName);
-            colored.addLayer(Basic.ContourIcon);
+            colored.addLayer(Vehicle.Shield);
+            colored.addLayer(Vehicle.Premium);
+            colored.addLayer(Vehicle.Tier);
+            colored.addLayer(Vehicle.TankName);
+            colored.addLayer(Vehicle.ContourIcon);
             colored.addLayer(Basic.PenetrationOrDamage);
             colored.addLayer(Basic.ViewRange);
             colored.addLayer(Armor.TurretArmorFSR);

@@ -8,18 +8,25 @@ using System.Text.RegularExpressions;
 
 namespace WotPogsIconSet.Utils
 {
-    class Translator
+    /// <summary>
+    /// Translate tank name using .mo files from game
+    /// </summary>
+    class WgTranslator
     {
+        /// <summary>
+        /// Loaded .mo files
+        /// </summary>
         static LinkedList<ICatalog> catalogs = new LinkedList<ICatalog>();
 
         static Regex subfixes = new Regex(@"_[(training)(action)]$");
 
-        static Translator()
+        static WgTranslator()
         {
+            // Load translation files into objects using NGettext.Catalog
 
             string[] files = new string[] { "czech", "france", "gb", "germany", "china", "igr", "japan", "usa", "ussr" };
 
-            string file = Path.Combine(@"D:\Repositories\wot.icons2\sources", @"texts\{0}_vehicles.mo");
+            string file = Path.Combine(Properties.Settings.Default.srcLocation, @"texts\{0}_vehicles.mo");
 
             foreach (string nation in files)
             {
@@ -33,6 +40,11 @@ namespace WotPogsIconSet.Utils
             }
         }
 
+        /// <summary>
+        /// Find translted vehicle name. Return null, if nothing is found.
+        /// </summary>
+        /// <param name="tank"></param>
+        /// <returns></returns>
         public static string findName(TankStats tank)
         {
             string fixedTankName = TankNameHelper.IDRegex.Replace(tank.Name, "").Replace(' ', '_');
@@ -50,17 +62,9 @@ namespace WotPogsIconSet.Utils
             string[] search = new string[] {
                 tank.Id + "_short",
                 fixedTankName + "_short",
-               // tank.Name + "_short",
                 tank.Id,
                 fixedTankName,
-               // tank.Name
             };
-
-            //
-            // string tankName = tank.Name.Replace(' ', '_') + "_short";
-
-            /*  Regex rx = new Regex(@"^([A-Z]{1,2}[0-9]{2}_)");
-               string tankName = rx.Replace(tank.Id, "") + "_short" ;*/
 
             foreach (Catalog catalog in catalogs)
             {
@@ -77,8 +81,6 @@ namespace WotPogsIconSet.Utils
 
             return null;
         }
-
-
 
     }
 }

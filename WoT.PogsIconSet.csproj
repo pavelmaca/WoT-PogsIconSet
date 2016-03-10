@@ -71,18 +71,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IconSets\Configuration.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="Fonts\PogsFontRenderer.cs" />
     <Compile Include="Fonts\PogsFonts.cs" />
-    <Compile Include="IconSets\Generator.cs" />
+    <Compile Include="Generator.cs" />
     <Compile Include="Layers\Vehicle.cs" />
     <Compile Include="Utils\Icon.cs" />
-    <Compile Include="IconSets\IconSet.cs" />
+    <Compile Include="IconSet.cs" />
     <Compile Include="Layers\Armor.cs" />
     <Compile Include="Layers\Basic.cs" />
     <Compile Include="Layers\Clear.cs" />
     <Compile Include="Layers\Color.cs" />
-    <Compile Include="IconSets\Layer.cs" />
+    <Compile Include="Layer.cs" />
     <Compile Include="Layers\Tahti.cs" />
     <Compile Include="Layers\TextHelpers.cs" />
     <Compile Include="Program.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Utils\ImageTools.cs" />
     <Compile Include="Utils\CustomNames.cs" />
     <Compile Include="Utils\TankNameHelper.cs" />
-    <Compile Include="Utils\Translator.cs" />
+    <Compile Include="Utils\WgTranslator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

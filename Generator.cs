@@ -14,13 +14,15 @@ namespace WotPogsIconSet
 
         protected IList<IconSet> IconSets = new List<IconSet>();
 
+        protected bool isOutputPrepared = false;
+
         public Generator()
         {
             // load tank stats using Phobos.WoT lib
             Console.WriteLine("Reading WoT stats...");
             String itemDefLocation = Properties.Settings.Default.itemDefLocation;
             Stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
-            Console.WriteLine("Found " + Stats.Count + " vehicles.");
+            Console.WriteLine("Found " + Stats.Count + " vehicles.\n");
         }
 
         public void AddIconSets(IList<IconSet> iconSets)
@@ -52,7 +54,6 @@ namespace WotPogsIconSet
             // handle versions
             foreach (IconSet version in iconSet.getVersions())
             {
-                // List<string> prefixClone = prefix.ToArray().ToList(); // TODO: better clone this object
                 PrepareOutputFolder(version, prefix);
             }
         }
@@ -65,26 +66,31 @@ namespace WotPogsIconSet
             {
                 PrepareOutputFolder(iconSet);
             }
+
+            isOutputPrepared = true;
         }
 
-        public void CreateIcons()
+        public void CreateIcons(string[] filterFiles = null, string[] filterNation = null)
         {
-            PrepareOutputFolders();
+            if (!isOutputPrepared)
+            {
+                PrepareOutputFolders();
+            }
 
             // generates icons
             Console.WriteLine("Generating icons...");
             foreach (TankStats tankStats in Stats)
             {
-                //Console.WriteLine("vehicle: " + tankStats.FileName);
-
-                /*/ Test
-                if (tankStats.FileName != "czech-Cz01_Skoda_T40.png")
+                // Debug, process only given vehicles, by icon file name.
+                if (filterFiles != null && !filterFiles.Contains(tankStats.FileName))
                 {
                     continue;
                 }
-                *///
-
-                // if (tankStats.Nation != "germany") continue;
+                // Debug, process only ehicles, for given nation.
+                if (filterNation != null && !filterNation.Contains(tankStats.Nation))
+                {
+                    continue;
+                }
 
                 // traverse all main sets
                 foreach (IconSet iconSet in IconSets)
@@ -107,9 +113,13 @@ namespace WotPogsIconSet
 
         public void CreatePackagest()
         {
+            if (!isOutputPrepared)
+            {
+                PrepareOutputFolders();
+            }
+
             Console.WriteLine("Creating packagest...");
 
-            // TODO create readme
             foreach (IconSet iconSet in IconSets)
             {
                 CreatePackage(iconSet);
@@ -117,7 +127,7 @@ namespace WotPogsIconSet
             Console.WriteLine("done");
         }
 
-        public void CreatePackage(IconSet iconSet)
+        protected void CreatePackage(IconSet iconSet)
         {
             foreach (IconSet version in iconSet.getVersions())
             {
@@ -127,14 +137,12 @@ namespace WotPogsIconSet
             string zipFileName = Properties.Settings.Default.gameVersion + "_" + iconSet.FullName + ".zip";
             string zipPath = Path.Combine(Properties.Settings.Default.outputLocation, zipFileName);
 
-            using (FileStream zipToOpen = new FileStream(zipPath, FileMode.OpenOrCreate))
-
             using (ZipFile archive = new ZipFile())
             {
                 string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\", Properties.Settings.Default.gameVersion);
 
                 archive.AddDirectory(iconSet.OutputPath, innerPath);
-                archive.Save(zipPath);                   
+                archive.Save(zipPath);
             }
         }
 

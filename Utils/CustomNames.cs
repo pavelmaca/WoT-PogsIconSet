@@ -15,7 +15,7 @@ namespace WotPogsIconSet.Utils
             // Load custom names
             nameList = new Dictionary<string, string>();
 
-            using (StreamReader r = new StreamReader(Path.Combine(@"D:\Repositories\wot.icons2\sources", "shortNames.json")))
+            using (StreamReader r = new StreamReader(Path.Combine(Properties.Settings.Default.srcLocation, "shortNames.json")))
             {
                 string json = r.ReadToEnd();
 
@@ -32,7 +32,7 @@ namespace WotPogsIconSet.Utils
             }
 
             Console.WriteLine("No custom name for key: " + key + "\n");
-            Console.WriteLine("Enter short name:");
+            //Console.WriteLine("Enter short name:");
             saveNewShortNames(key, fallBackName);
 
             return null;
@@ -42,7 +42,7 @@ namespace WotPogsIconSet.Utils
         {
             nameList.Add(key, name);
 
-            using (StreamWriter wr = new StreamWriter(Path.Combine(@"D:\Repositories\wot.icons2\sources", "shortNames.json")))
+            using (StreamWriter wr = new StreamWriter(Path.Combine(Properties.Settings.Default.srcLocation, "shortNames.json")))
             {
                 string json = JsonConvert.SerializeObject(nameList, Formatting.Indented);
                 wr.WriteLine(json);

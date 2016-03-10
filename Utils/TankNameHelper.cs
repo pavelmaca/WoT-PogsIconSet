@@ -35,7 +35,7 @@ namespace WotPogsIconSet.Utils
         {
             // 2 transalted name
 
-            string name = Translator.findName(tank);
+            string name = WgTranslator.findName(tank);
 
             // if no translated name found, use custom name
             if (name == null)

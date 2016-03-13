@@ -14,6 +14,19 @@ namespace WotPogsIconSet.Utils
             // 1 use regular tank name
             string name = tank.Name;
 
+            string forceCustom = forceCustomName(tank);
+            if (forceCustom != null)
+            {
+                if (isTextToLong(forceCustom, maxWidth))
+                {
+                    //Console.WriteLine("Forced custom name is too long: " + forceCustom);
+                }else
+                {
+                    //Console.WriteLine("Using forced custom name: " + forceCustom);
+                    return forceCustom;
+                }
+            }
+
             // check if name is id (containd F11_ etc...)  if not, continue, else use translated name
             if (startWithId(name))
             {
@@ -73,6 +86,11 @@ namespace WotPogsIconSet.Utils
             }
 
             return name;
+        }
+
+        protected static string forceCustomName(TankStats tank)
+        {
+            return  CustomNames.findName(tank);
         }
 
 

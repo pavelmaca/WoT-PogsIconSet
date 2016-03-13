@@ -38,6 +38,16 @@ namespace WotPogsIconSet.Utils
             return null;
         }
 
+        public static string findName(TankStats tank)
+        {
+            string key = tank.Nation + ":" + tank.Id;
+            if (nameList.ContainsKey(key))
+            {
+                return nameList[key];
+            }
+            return null;
+        }
+
         public static void saveNewShortNames(string key, string name)
         {
             nameList.Add(key, name);

@@ -25,7 +25,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons\\phobos.scripts\\src\\item_defs 0.9.14 #")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons\\phobos.scripts\\src\\item_defs 0.9.14.1 #")]
         public string itemDefLocation {
             get {
                 return ((string)(this["itemDefLocation"]));
@@ -34,7 +34,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.9.14")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.9.14.1")]
         public string gameVersion {
             get {
                 return ((string)(this["gameVersion"]));

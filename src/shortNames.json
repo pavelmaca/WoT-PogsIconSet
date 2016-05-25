@@ -39,7 +39,7 @@
   "ussr:Valentine_LL": "Valen. II",
   "ussr:M3_Stuart_LL": "M3 Stu.",
   "ussr:R38_KV-220_action": "KV-220",
-  "ussr:T-34-85_training": "T-34-85",
+  "ussr:R07_T-34-85_training": "T-34-85",
   "ussr:Valentine_LL_IGR": "Valen. II",
   "uk:GB08_Churchill_I": "Church. I",
   "uk:GB10_Black_Prince": "Black P.",
@@ -85,5 +85,8 @@
   "germany:G120_M41_90": "M41 90",
   "germany:Lowe": "Lowe",
   "germany:G120_M41_90_GrandFinal": "M41 90 GF",
-  "ussr:R00_Sfera": "Sfera"
+  "ussr:R00_Sfera": "Sfera",
+  "ussr:R128_KV4_Kreslavskiy": "KV-4K",
+  "usa:A112_T71E2": "T71E2",
+  "ussr:R125_T_45": "T-45"
 }

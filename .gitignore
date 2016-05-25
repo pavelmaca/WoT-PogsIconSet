@@ -235,3 +235,4 @@ _Pvt_Extensions
 .fake/
 src/contour/*.png
 src/texts/*.mo
+src/item_defs*

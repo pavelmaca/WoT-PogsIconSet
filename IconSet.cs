@@ -35,7 +35,12 @@ namespace WotPogsIconSet
         /// <summary>
         /// Output path for icons
         /// </summary>
-        public string OutputPath { get; protected set; }
+        public string OutputPathIcon { get; protected set; }
+
+        /// <summary>
+        /// Output path for atlases
+        /// </summary>
+        public string OutputPathAtlas { get; protected set; }
 
         public IconSet(string name)
         {
@@ -46,7 +51,10 @@ namespace WotPogsIconSet
 
         public void SetOutputPath(string path, string fullName)
         {
-            OutputPath = path;
+            OutputPathIcon = Path.Combine(path, "icons");
+            OutputPathAtlas = Path.Combine(path, "atlases");
+            Directory.CreateDirectory(OutputPathIcon);
+            Directory.CreateDirectory(OutputPathAtlas);
             FullName = fullName;
         }
 
@@ -58,7 +66,7 @@ namespace WotPogsIconSet
         /// <returns>Output path to icon file.</returns>
         public string Generate(TankStats tankStats, string parentPath = null)
         {
-            string outputFile = Path.Combine(OutputPath, tankStats.FileName);
+            string outputFile = Path.Combine(OutputPathIcon, tankStats.FileName);
 
             // create / load icon file
             using (Icon icon = parentPath == null ? new Icon() : new Icon(parentPath))
@@ -116,7 +124,7 @@ namespace WotPogsIconSet
         protected IconSet Clone()
         {
             IconSet clone = new IconSet(Name);
-            clone.OutputPath = null;
+            clone.OutputPathIcon = null;
             clone.Layers = new List<Layer>(Layers);
 
             // clone all versions

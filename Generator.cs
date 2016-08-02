@@ -141,11 +141,55 @@ namespace WotPogsIconSet
 
             using (ZipFile archive = new ZipFile())
             {
-                string innerPath = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\", Properties.Settings.Default.gameVersion);
+                string innerPathIcons = String.Format(@"res_mods\{0}\gui\maps\icons\vehicle\contour\", Properties.Settings.Default.gameVersion);
+                archive.AddDirectory(iconSet.OutputPathIcon, innerPathIcons);
 
-                archive.AddDirectory(iconSet.OutputPath, innerPath);
+                string innerPathAtlases = String.Format(@"res_mods\{0}\gui\flash\atlases\", Properties.Settings.Default.gameVersion);
+                archive.AddDirectory(iconSet.OutputPathAtlas, innerPathAtlases);
+                
+
                 archive.Save(zipPath);
             }
+        }
+
+        public void CreateAtlases()
+        {
+            if (!isOutputPrepared)
+            {
+                PrepareOutputFolders();
+            }
+
+            Console.WriteLine("Creating atlases...");
+
+            // Read original atlases
+            Atlas battleAtlas = new Atlas(Atlas.BATTLE_ATLAS, Stats);
+            Atlas markerAtlas = new Atlas(Atlas.VEHICLE_MARKER_ATLAS, Stats);
+
+            List<Atlas> atlases = new List<Atlas>();
+            atlases.Add(battleAtlas);
+            atlases.Add(markerAtlas);
+
+            // Write modifiead atlases
+
+            foreach (IconSet iconSet in IconSets)
+            {
+                CreateAtlas(iconSet, atlases);
+            }
+            Console.WriteLine("done");
+        }
+
+        protected void CreateAtlas(IconSet iconSet, IList<Atlas> atlases)
+        {
+            foreach (IconSet version in iconSet.getVersions())
+            {
+                CreateAtlas(version, atlases);
+            }
+
+            foreach(Atlas atlas in atlases)
+            {
+                atlas.generate(iconSet);
+            }
+
         }
 
     }

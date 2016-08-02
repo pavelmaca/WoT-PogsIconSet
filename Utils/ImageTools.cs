@@ -37,5 +37,19 @@ namespace WotPogsIconSet.Utils
                 }
             }
         }
+
+        public static Image cropImage(Image img, Rectangle cropArea)
+        {
+            Bitmap target = new Bitmap(cropArea.Width, cropArea.Height);
+
+            using (Graphics g = Graphics.FromImage(target))
+            {
+                g.DrawImage(img, new Rectangle(0, 0, target.Width, target.Height),
+                                 cropArea,
+                                 GraphicsUnit.Pixel);
+            }
+
+            return target;
+        }
     }
 }

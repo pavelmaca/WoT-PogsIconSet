@@ -71,11 +71,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Atlas.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Fonts\PogsFontRenderer.cs" />
     <Compile Include="Fonts\PogsFonts.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="Layers\Vehicle.cs" />
+    <Compile Include="Utils\Files.cs" />
     <Compile Include="Utils\Icon.cs" />
     <Compile Include="IconSet.cs" />
     <Compile Include="Layers\Armor.cs" />

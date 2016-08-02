@@ -25,6 +25,8 @@ namespace WotPogsIconSet
             // render icons to output directory
             generator.CreateIcons(); //new string[] {"usa-A63_M46_Patton_KR.png"});
 
+            generator.CreateAtlases();
+
             // create zip archives
             generator.CreatePackagest();
 

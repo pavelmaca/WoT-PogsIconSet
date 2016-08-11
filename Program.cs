@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Threading;
 
 
@@ -12,6 +13,15 @@ namespace WotPogsIconSet
             // Fix Phobos.WoT Shell.cs error
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+
+            // Clear outpout dir
+            Console.WriteLine("Clearing output dir...");
+            if (Directory.Exists(Properties.Settings.Default.outputLocation))
+            {
+                var dir = new DirectoryInfo(Properties.Settings.Default.outputLocation);
+                dir.Delete(true);
+            }
+            Directory.CreateDirectory(Properties.Settings.Default.outputLocation);
 
             // Run icon generator
             // load stats

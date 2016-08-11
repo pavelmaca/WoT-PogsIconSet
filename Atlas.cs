@@ -122,6 +122,7 @@ namespace WotPogsIconSet
 
         public void generate(IconSet iconSet)
         {
+            Directory.CreateDirectory(iconSet.OutputPathAtlas);
 
             String atlasPngFile = Path.Combine(iconSet.OutputPathAtlas, file + ".png");
             Console.WriteLine("Generating altas " + atlasPngFile);

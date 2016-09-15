@@ -13,11 +13,7 @@ namespace WotPogsIconSet.Layers
 
         public static Layer Shield = (Graphics g, TankStats tankStats) =>
         {
-            string shieldPath = Path.Combine(Properties.Settings.Default.srcLocation, @"images\sheilds", String.Format(@"{0}.png", tankStats.Nation));
-            using (Image shield = Image.FromFile(shieldPath))
-            {
-                g.DrawImageUnscaled(shield, 1, 2);
-            }
+            g.DrawImageUnscaled(shield, 1, 2);
         };
 
         public static Layer Premium = (Graphics g, TankStats tankStats) =>
@@ -84,11 +80,13 @@ namespace WotPogsIconSet.Layers
         // Setup
 
         protected static Image premiumStar;
+        protected static Image shield;
 
         static Vehicle()
         {
 
             premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.srcLocation, @"images\star.png"));
+            shield = Image.FromFile(Path.Combine(Properties.Settings.Default.srcLocation, @"images\sheild.png"));
         }
     }
 }

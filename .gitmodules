@@ -1,4 +1,3 @@
 [submodule "libs/Phobos.WoT"]
 	path = libs/Phobos.WoT
-	url = ../Phobos.WoT
-	branch = master
+	url = https://github.com/pavelmaca/WoT-PhobosStatsReader.git

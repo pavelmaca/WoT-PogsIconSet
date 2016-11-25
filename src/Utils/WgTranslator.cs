@@ -26,7 +26,7 @@ namespace WotPogsIconSet.Utils
 
             string[] files = new string[] { "czech", "france", "gb", "germany", "china", "igr", "japan", "usa", "ussr" };
 
-            string file = Path.Combine(Properties.Settings.Default.srcLocation, @"texts\{0}_vehicles.mo");
+            string file = Path.Combine(Properties.Settings.Default.resourcesLocation, @"texts\{0}_vehicles.mo");
 
             foreach (string nation in files)
             {

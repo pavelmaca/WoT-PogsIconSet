@@ -25,7 +25,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\src\\item_defs")]
+        [global::System.Configuration.DefaultSettingValueAttribute("resources\\item_defs")]
         public string itemDefLocation {
             get {
                 return ((string)(this["itemDefLocation"]));
@@ -43,7 +43,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\output")]
+        [global::System.Configuration.DefaultSettingValueAttribute("output")]
         public string outputLocation {
             get {
                 return ((string)(this["outputLocation"]));
@@ -52,7 +52,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\resources")]
+        [global::System.Configuration.DefaultSettingValueAttribute("resources")]
         public string resourcesLocation {
             get {
                 return ((string)(this["resourcesLocation"]));

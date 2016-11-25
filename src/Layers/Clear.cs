@@ -28,7 +28,7 @@ namespace WotPogsIconSet.Layers
         {
             foreach (TankType type in Enum.GetValues(typeof(TankType)))
             {
-                string stripePath = Path.Combine(Properties.Settings.Default.resourcesLocation, @"images\stripes", String.Format(@"{0}.png", type));
+                string stripePath = Path.Combine(Properties.Settings.getResourcesLocation(), @"images\stripes", String.Format(@"{0}.png", type));
                 headerStripes[type] = Image.FromFile(stripePath);
             }
         }

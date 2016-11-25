@@ -1,4 +1,8 @@
-﻿namespace WotPogsIconSet.Properties {
+﻿using System;
+using System.IO;
+using System.Reflection;
+
+namespace WotPogsIconSet.Properties {
     
     
     // This class allows you to handle specific events on the settings class:
@@ -23,6 +27,21 @@
         
         private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
             // Add code to handle the SettingsSaving event here.
+        }
+
+        public static string getOutputLocation()
+        {
+            return Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, Default.outputLocation);
+        }
+
+        public static string getResourcesLocation()
+        {
+            return Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, Default.resourcesLocation);
+        }
+
+        public static string getItemDefLocation()
+        {
+            return Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, Default.itemDefLocation);
         }
     }
 }

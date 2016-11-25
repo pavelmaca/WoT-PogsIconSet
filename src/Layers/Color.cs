@@ -32,7 +32,7 @@ namespace WotPogsIconSet.Layers
         static Colored()
         {
 
-            stripe = Image.FromFile(Path.Combine(Properties.Settings.Default.resourcesLocation, @"images\stripe.png"));
+            stripe = Image.FromFile(Path.Combine(Properties.Settings.getResourcesLocation(), @"images\stripe.png"));
 
             bgColors[TankType.Heavy] = new Color[24] {
                 Color.FromArgb(123, 72, 36),  // 1

@@ -20,7 +20,7 @@ namespace WotPogsIconSet
         {
             // load tank stats using Phobos.WoT lib
             Console.WriteLine("Reading WoT stats...");
-            String itemDefLocation = Properties.Settings.Default.itemDefLocation;
+            String itemDefLocation = Properties.Settings.getItemDefLocation();
             Stats = ItemDatabase.GetTankStats(itemDefLocation).ToList();
             Console.WriteLine("Found " + Stats.Count + " vehicles.\n");
         }
@@ -43,7 +43,7 @@ namespace WotPogsIconSet
             }
 
 
-            string outputPath = Path.Combine(Properties.Settings.Default.outputLocation, String.Format(@"{0}\", prefix));
+            string outputPath = Path.Combine(Properties.Settings.getOutputLocation(), String.Format(@"{0}\", prefix));
             if (!Directory.Exists(outputPath))
             {
                 Console.WriteLine("Creating ouput directory: " + outputPath);
@@ -137,7 +137,7 @@ namespace WotPogsIconSet
             }
 
             string zipFileName = Properties.Settings.Default.gameVersion + "_" + iconSet.FullName + ".zip";
-            string zipPath = Path.Combine(Properties.Settings.Default.outputLocation, zipFileName);
+            string zipPath = Path.Combine(Properties.Settings.getOutputLocation(), zipFileName);
 
             using (ZipFile archive = new ZipFile())
             {

@@ -73,10 +73,10 @@ namespace WotPogsIconSet
 
             //CreateImageList();
 
-            String atlasXmlFile = Path.Combine(Properties.Settings.Default.resourcesLocation, @"atlases", file + ".xml");
-            String atlasPngFile = Path.Combine(Properties.Settings.Default.resourcesLocation, @"atlases", file + ".png");
+            String atlasXmlFile = Path.Combine(Properties.Settings.getResourcesLocation(), @"atlases", file + ".xml");
+            String atlasPngFile = Path.Combine(Properties.Settings.getResourcesLocation(), @"atlases", file + ".png");
 
-            tmpDir = Path.Combine(Properties.Settings.Default.outputLocation, "atlases", file);
+            tmpDir = Path.Combine(Properties.Settings.getOutputLocation(), "atlases", file);
             Directory.CreateDirectory(tmpDir);
 
             XmlDocument atlasXml = new XmlDocument();

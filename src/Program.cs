@@ -14,14 +14,21 @@ namespace WotPogsIconSet
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
 
+        
             // Clear outpout dir
             Console.WriteLine("Clearing output dir...");
-            if (Directory.Exists(Properties.Settings.Default.outputLocation))
-            {
-                var dir = new DirectoryInfo(Properties.Settings.Default.outputLocation);
+               if (Directory.Exists(Properties.Settings.getOutputLocation()))
+               {
+                   var dir = new DirectoryInfo(Properties.Settings.getOutputLocation());
+                Console.WriteLine("Are you sure to clear direcotry \""+ dir + "\" ? Y\\N" );
+                String answer = Console.ReadLine();
+                if (!answer.ToUpper().Equals("Y"))
+                {
+                    return;
+                }
                 dir.Delete(true);
-            }
-            Directory.CreateDirectory(Properties.Settings.Default.outputLocation);
+               }
+            Directory.CreateDirectory(Properties.Settings.getOutputLocation());
 
             // Run icon generator
             // load stats

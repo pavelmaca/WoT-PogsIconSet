@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="itemDefLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\Repositories\wot.icons2\WoT.PogsIconSet\src\item_defs</Value>
+      <Value Profile="(Default)">resources\item_defs</Value>
     </Setting>
     <Setting Name="gameVersion" Type="System.String" Scope="Application">
       <Value Profile="(Default)">0.9.16</Value>
     </Setting>
     <Setting Name="outputLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\Repositories\wot.icons2\output</Value>
+      <Value Profile="(Default)">output</Value>
     </Setting>
     <Setting Name="resourcesLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\Repositories\wot.icons2\WoT.PogsIconSet\resources</Value>
+      <Value Profile="(Default)">resources</Value>
     </Setting>
   </Settings>
 </SettingsFile>

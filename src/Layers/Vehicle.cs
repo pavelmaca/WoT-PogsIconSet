@@ -31,7 +31,7 @@ namespace WotPogsIconSet.Layers
 
         public static Layer ContourIcon = (Graphics g, TankStats tankStats) =>
         {
-            using (Image original = Image.FromFile(Path.Combine(Properties.Settings.Default.resourcesLocation, "contour", tankStats.FileName)))
+            using (Image original = Image.FromFile(Path.Combine(Properties.Settings.getResourcesLocation(), "contour", tankStats.FileName)))
             {
                 if (original == null)
                 {
@@ -85,8 +85,8 @@ namespace WotPogsIconSet.Layers
         static Vehicle()
         {
 
-            premiumStar = Image.FromFile(Path.Combine(Properties.Settings.Default.resourcesLocation, @"images\star.png"));
-            shield = Image.FromFile(Path.Combine(Properties.Settings.Default.resourcesLocation, @"images\sheild.png"));
+            premiumStar = Image.FromFile(Path.Combine(Properties.Settings.getResourcesLocation(), @"images\star.png"));
+            shield = Image.FromFile(Path.Combine(Properties.Settings.getResourcesLocation(), @"images\sheild.png"));
         }
     }
 }

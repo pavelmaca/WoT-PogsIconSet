@@ -239,5 +239,6 @@ resources/contour/*
 resources/texts/*
 resources/item_defs/*
 resources/atlases/*
+output/*
 
 !*.gitkeep

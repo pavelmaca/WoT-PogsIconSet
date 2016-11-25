@@ -52,10 +52,10 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\src")]
-        public string srcLocation {
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Repositories\\wot.icons2\\WoT.PogsIconSet\\resources")]
+        public string resourcesLocation {
             get {
-                return ((string)(this["srcLocation"]));
+                return ((string)(this["resourcesLocation"]));
             }
         }
     }

@@ -232,8 +232,12 @@ _Pvt_Extensions
 .paket/paket.exe
 
 # FAKE - F# Make
-.fake/
-src/contour/*.png
-src/texts/*.mo
-src/item_defs*
-src/atlases/*
+
+
+
+resources/contour/*
+resources/texts/*
+resources/item_defs/*
+resources/atlases/*
+
+!*.gitkeep

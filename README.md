@@ -3,12 +3,12 @@
 ## Generating icons
 
 ### Preparation
-1) copy `World_of_Tanks\res\scripts\item_defs` dir from game into `./resources/item_def` 
-2) extract original contour icons from   `World_of_Tanks\res\packages\gui.pkg\gui\maps\icons\vehicle\contour` into `./resources/contour` 
+1. copy `World_of_Tanks\res\scripts\item_defs` dir from game into `./resources/item_def` 
+2. extract original contour icons from   `World_of_Tanks\res\packages\gui.pkg\gui\maps\icons\vehicle\contour` into `./resources/contour` 
 
-3) extract atlases files from `World_of_Tanks\res\packages\gui.pkg\gui\flash\atlases\` into `./resources/atlases` 
+3. extract atlases files from `World_of_Tanks\res\packages\gui.pkg\gui\flash\atlases\` into `./resources/atlases` 
 
-4) copy all `*_vehicles.mo` files from `World_of_Tanks\res\text\lc_messages\`  into `./resources/texts` 
+4. copy all `*_vehicles.mo` files from `World_of_Tanks\res\text\lc_messages\`  into `./resources/texts` 
 
 ### Program setting
 In Visual Studio, change property `gameVersion` inside `Properties/Settings.settings` dialog to current game version.

@@ -24,7 +24,7 @@ namespace WotPogsIconSet.Utils
         {
             // Load translation files into objects using NGettext.Catalog
 
-            string[] files = new string[] { "czech", "france", "gb", "germany", "china", "igr", "japan", "usa", "ussr" };
+            string[] files = new string[] { "czech", "france", "gb", "germany", "china", "igr", "japan", "usa", "ussr", "sweden" };
 
             string file = Path.Combine(Properties.Settings.getResourcesLocation(), @"texts\{0}_vehicles.mo");
 

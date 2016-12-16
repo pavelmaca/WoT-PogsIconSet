@@ -124,5 +124,12 @@
   "sweden:S15_L_60": "L-60",
   "germany:G102_Pz_III": "Pz 3",
   "germany:G119_Panzer58_BF": "Schwar. 58",
-  "ussr:R61_Object252_BF": "Obj. 252BF"
+  "ussr:R61_Object252_BF": "Obj. 252BF",
+  "china:Ch03_WZ_111_A": "Alp. Tiger",
+  "usa:A115_Chrysler_K": "Chrys. K",
+  "sweden:S05_Strv_M21_29": "Strv FM21",
+  "sweden:S03_Strv_M38": "Strv M38",
+  "sweden:S12_Strv_M40": "Strv M40L",
+  "sweden:S02_Strv_M42": "Strv M42",
+  "sweden:S09_L_120_TD": "Pvl FM42"
 }

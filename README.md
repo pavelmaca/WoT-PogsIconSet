@@ -3,7 +3,7 @@
 ## Generating icons
 
 ### Preparation
-1. copy `World_of_Tanks\res\scripts\item_defs` dir from game into `./resources/item_def` 
+1. copy `World_of_Tanks\res\packages\scripts.pkg\scripts\item_defs` dir from game into `./resources/item_def` 
 2. extract original contour icons from   `World_of_Tanks\res\packages\gui.pkg\gui\maps\icons\vehicle\contour` into `./resources/contour` 
 
 3. extract atlases files from `World_of_Tanks\res\packages\gui.pkg\gui\flash\atlases\` into `./resources/atlases` 

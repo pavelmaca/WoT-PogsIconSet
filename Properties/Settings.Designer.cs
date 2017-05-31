@@ -34,7 +34,7 @@ namespace WotPogsIconSet.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.9.18.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.9.19.0")]
         public string gameVersion {
             get {
                 return ((string)(this["gameVersion"]));
